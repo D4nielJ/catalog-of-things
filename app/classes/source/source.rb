@@ -4,6 +4,7 @@ class Source
 
   def initialize(name:)
     @name = name
+    @items = []
   end
 
   def add_item(item)
