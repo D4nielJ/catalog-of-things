@@ -1,3 +1,2 @@
-class Source 
-  
+class Source
 end
