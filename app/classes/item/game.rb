@@ -1,3 +1,4 @@
+class Game
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 

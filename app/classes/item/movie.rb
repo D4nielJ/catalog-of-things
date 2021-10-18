@@ -1,3 +1,2 @@
-class Movie 
-  
+class Movie
 end
