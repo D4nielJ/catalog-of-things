@@ -29,7 +29,9 @@ class Item
     author.add_item(self) unless && !author.items.include?(self)
   end
 
-  def move_to_archive; end
+  def move_to_archive
+    @archived = true if can_be_archived?
+  end
 
   private
 
