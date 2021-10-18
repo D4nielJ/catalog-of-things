@@ -2,7 +2,7 @@ class Item
   attr_reader :id, :archived, :genre, :source, :label, :author
   attr_accessor :date, :name
 
-  def initialize(name:, archived:, date:, id: Random.rand(1..100_000))
+  def initialize(name:, date:, archived: false, id: Random.rand(1..100_000))
     @id = id
     @name = name
     @date = date
@@ -26,7 +26,7 @@ class Item
 
   def author=(author)
     @author = author
-    author.add_item(self) unless && !author.items.include?(self)
+    author.add_item(self) unless !author.items.include?(self)
   end
 
   def move_to_archive
@@ -43,3 +43,8 @@ class Item
     @date < formatted_date
   end
 end
+
+item = Item.new(name: 'Nombre', date: '2020-10-10')
+p item.archived
+p item.move_to_archive
+p item.archived
