@@ -34,6 +34,10 @@ class Item
   private
 
   def can_be_archived?
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+    time = Time.now
+    date_to_compare = Time.new(time.year - 10, time.month, time.day)
+    formatted_date = date_to_compare.strftime('%Y-%m-%d')
+
+    @date < formatted_date
   end
 end
