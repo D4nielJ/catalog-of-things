@@ -1,3 +1,2 @@
-class MusicAlbum 
-  
+class MusicAlbum
 end
