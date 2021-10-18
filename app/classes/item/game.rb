@@ -14,6 +14,6 @@ class Game < Item
     date_to_compare = Time.new(time.year - 2, time.month, time.day)
     formatted_date = date_to_compare.strftime('%Y-%m-%d')
 
-    super && @last_played_at > formatted_date
+    super && @last_played_at < formatted_date
   end
 end
