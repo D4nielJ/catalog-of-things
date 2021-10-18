@@ -6,6 +6,7 @@ def main
   app = App.new(
     actions: [
       ListAllBooks.new,
+      ListAllAlbums.new,
       Exit.new
     ]
   )

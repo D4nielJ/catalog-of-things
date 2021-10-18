@@ -5,13 +5,10 @@ class ListAllAlbums
   attr_reader :name
 
   def initialize
-    @name = 'List all books'
+    @name = 'List all albums'
   end
 
   def do_action(state)
-    List_Collection.call(state[:albums], @name, %i[on_spotify date])
-    p 'Estos son los libros'
-    p Item.new(name: 'test', date: '10-10-2020')
-    p state[:books]
+    List_Collection.call(state[:albums], 'Albums', %i[on_spotify date], Display_Table)
   end
 end
