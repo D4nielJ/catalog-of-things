@@ -29,7 +29,7 @@ class Item
   end
 
   def move_to_archive
-    @archived = true if can_be_archived?
+    @archived = can_be_archived?
   end
 
   private
@@ -43,7 +43,7 @@ class Item
   end
 end
 
-item = Item.new(name: 'Nombre', date: '2020-10-10')
-p item.archived
-p item.move_to_archive
-p item.archived
+# item = Item.new(date: '2020-10-10')
+# p item.archived
+# p item.move_to_archive
+# p item.archived
