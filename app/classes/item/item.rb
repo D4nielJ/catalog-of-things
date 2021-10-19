@@ -36,6 +36,10 @@ class Item
   def to_hash
     {
       id: @id,
+      genre: @genre.id,
+      source: @source.id,
+      label: @label.id,
+      author: @author.id,
       name: @name,
       date: @date,
       archived: @archived
