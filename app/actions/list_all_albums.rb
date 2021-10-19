@@ -9,6 +9,6 @@ class ListAllAlbums
   end
 
   def do_action(state)
-    List_Collection.call(state[:albums], 'Albums', %i[genre author name label date source], Display_All)
+    List_Collection.call(state[:albums], 'Albums', %i[name genre author label date source], Display_All)
   end
 end

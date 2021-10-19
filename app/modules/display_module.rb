@@ -42,6 +42,7 @@ module DisplayModule
       class << temp
         attr_accessor :name, :author, :label, :date, :genre, :source
       end
+      temp.name = res.name
       temp.genre = res.genre.name
       temp.label = res.label.title
       temp.date = res.date

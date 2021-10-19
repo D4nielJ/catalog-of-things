@@ -1,27 +1,27 @@
 require_relative '../modules/input_module'
 require_relative '../modules/display_module'
 
-class CreateAlbum
+class CreateGame
   include InputModule
   include DisplayModule
   attr_reader :name
 
   def initialize
-    @name = 'Create album'
+    @name = 'Create game'
   end
 
   def do_action(state)
-    album = MusicAlbum.new(**Show_Prompt.call(%i[name date on_spotify]))
+    game = Game.new(**Show_Prompt.call(%i[name date last_played_at multiplayer]))
     genre = SelectFromList.new.do_helper_action(state, state[:genres], CreateGenre.new, 'Genre')
     author = SelectFromList.new.do_helper_action(state, state[:authors], CreateAuthor.new, 'Author')
     label = SelectFromList.new.do_helper_action(state, state[:labels], CreateLabel.new, 'Labels')
     source = SelectFromList.new.do_helper_action(state, state[:sources], CreateSource.new, 'Source')
 
-    album.label = label
-    album.author = author
-    album.genre = genre
-    album.source = source
+    game.label = label
+    game.author = author
+    game.genre = genre
+    game.source = source
 
-    state[:albums] << album
+    state[:games] << game
   end
 end

@@ -5,13 +5,10 @@ require_relative 'app/actions/index'
 def main
   app = App.new(
     actions: [
-      ListAllBooks.new,
-      ListAllAlbums.new,
-      CreateAlbum.new,
-      CreateAuthor.new,
-      CreateLabel.new,
-      CreateSource.new,
-      CreateGenre.new,
+      ListAllBooks.new, ListAllAlbums.new, ListAllGames.new, ListAllMovies.new,
+      ListAllGenres.new, ListAllAuthors.new, ListAllSources.new, ListAllLabes.new,
+      CreateAlbum.new, CreateBook.new, CreateMovie.new, CreateGame.new,
+      CreateAuthor.new, CreateLabel.new, CreateSource.new, CreateGenre.new,
       Exit.new
     ]
   )
