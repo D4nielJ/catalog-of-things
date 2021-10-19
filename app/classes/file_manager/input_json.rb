@@ -23,9 +23,9 @@ class InputJson
       albums: lambda { |o|
         Author.new(id: o['id'], first_name: o['first_name'], last_name: o['last_name'])
       },
-      books: -lambda { |o|
+      books: lambda { |o|
         Author.new(id: o['id'], first_name: o['first_name'], last_name: o['last_name'])
-      },
+      }
     }
   end
 
