@@ -7,6 +7,9 @@ class App
       movies: [],
       games: [],
       genres: [],
+      sources: [],
+      authors: [],
+      labels: [],
       exit: false
     }
   end
