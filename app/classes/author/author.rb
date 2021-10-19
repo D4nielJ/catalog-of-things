@@ -14,7 +14,7 @@ class Author
     item.author = self
   end
 
-  def to_json
-    
+  def to_savable
+    JSON.pretty_generate({ id: @id })
   end
 end

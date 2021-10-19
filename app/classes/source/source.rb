@@ -11,4 +11,8 @@ class Source
     @items.push(item)
     item.source = self
   end
+
+  def to_savable
+    JSON.pretty_generate({ id: @id })
+  end
 end

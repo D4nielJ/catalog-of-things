@@ -33,6 +33,10 @@ class Item
     @archived = can_be_archived?
   end
 
+  def to_savable
+    JSON.pretty_generate({ id: @id })
+  end
+
   private
 
   def can_be_archived?

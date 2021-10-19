@@ -10,7 +10,8 @@ class FileManager
 
   def fetch(state); end
 
-  def save(_state)
+  def save(state)
     @output.create_files
+    @output.save_files(state)
   end
 end

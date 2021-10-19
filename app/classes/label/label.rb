@@ -13,4 +13,8 @@ class Label
     @items.push(item)
     item.label = self
   end
+
+  def to_savable
+    JSON.pretty_generate({ id: @id })
+  end
 end
