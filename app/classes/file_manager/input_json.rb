@@ -1,32 +1,42 @@
 class InputJson
+  MAP_HASH = {
+    authors: lambda { |o, _state|
+      Author.new(id: o['id'], first_name: o['first_name'], last_name: o['last_name'])
+    },
+    genres: lambda { |o, _state|
+      Genre.new(id: o['id'], name: o['name'])
+    },
+    labels: lambda { |o, _state|
+      Label.new(id: o['id'], title: o['title'], color: o['color'])
+    },
+    sources: lambda { |o, _state|
+      Source.new(id: o['id'], name: o['name'])
+    },
+    movies: lambda { |o, state|
+      new_object = Movie.new(id: o['id'], name: o['name'], date: o['date'], archived: o['archived'],
+                             silent: o['silent'])
+      @assign_attr.call(new_object, state)
+    },
+    games: lambda { |o, state|
+      new_object = Game.new(id: o['id'], name: o['name'], date: o['date'], archived: o['archived'],
+                            last_played_at: o['last_played_at'], multiplayer: o['multiplayer'])
+      @assign_attr.call(new_object, state)
+    },
+    albums: lambda { |o, state|
+      new_object = MusicAlbum.new(id: o['id'], name: o['name'], date: o['date'], archived: o['archived'],
+                                  on_spotify: o['on_spotify'])
+      @assign_attr.call(new_object, state)
+    },
+    books: lambda { |o, state|
+      new_object = Book.new(id: o['id'], name: o['name'], date: o['date'], archived: o['archived'],
+                            publisher: o['publisher'], cover_state: o['cover_state'])
+      @assign_attr.call(new_object, state)
+    }
+  }.freeze
+
   def initialize(adress = './app/data')
     @adress = adress
-    @map_hash = {
-      authors: lambda { |o|
-        Author.new(id: o['id'], first_name: o['first_name'], last_name: o['last_name'])
-      },
-      genres: lambda { |o|
-        Genre.new(id: o['id'], name: o['name'])
-      },
-      labels: lambda { |o|
-        Label.new(id: o['id'], title: o['title'], color: o['color'])
-      },
-      source: lambda { |o|
-        Source.new(id: o['id'], name: o['name'])
-      },
-      movies: lambda { |o|
-        Movie.new(id: o['id'], name: o['name'], date: o['date'], archived: o['archived'], silent: o['silent'])
-      },
-      games: lambda { |o|
-        Author.new(id: o['id'], first_name: o['first_name'], last_name: o['last_name'])
-      },
-      albums: lambda { |o|
-        Author.new(id: o['id'], first_name: o['first_name'], last_name: o['last_name'])
-      },
-      books: lambda { |o|
-        Author.new(id: o['id'], first_name: o['first_name'], last_name: o['last_name'])
-      }
-    }
+    @map_hash = MAP_HASH
   end
 
   def fetch_data(state)
@@ -42,13 +52,18 @@ class InputJson
   @create_authors = lambda do |hash|
     Author.new(**hash)
   end
+  @assign_attr = lambda { |obj, state|
+    obj.author = state[:authors].select { |author| author.id == o['author'] }[0]
+    obj.source = state[:sources].select { |source| source.id == o['source'] }[0]
+    obj.genre = state[:genres].select { |genre| genre.id == o['genre'] }[0]
+    obj.label = state[:labels].select { |label| label.id == o['label'] }[0]
+    obj
+  }
 
   def fetch_file(file, state)
     json = File.read("#{@adress}/#{file}.json")
     hashes = JSON.parse(json)
-    # arr = hashes.map { |hash| "build_#{file}".to_sym(hash) }
-    arr = hashes.map { |hash| @map_hash[file.to_sym].call(hash) }
-    p arr
+    arr = hashes.map { |hash| p @map_hash[file.to_sym].call(hash, state) }
     state[file.to_sym].concat(arr)
   end
 
