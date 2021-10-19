@@ -7,6 +7,7 @@ def main
     actions: [
       ListAllBooks.new,
       ListAllAlbums.new,
+      CreateAlbum.new,
       Exit.new
     ]
   )

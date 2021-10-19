@@ -36,5 +36,19 @@ module DisplayModule
     puts
   end
 
+  Display_All = lambda do |collection, title, labels|
+    table = collection.map do |res|
+      temp = Object.new
+      class << temp
+        attr_accessor :name, :author, :label, :date, :genre
+      end
+      temp.genre = res.genre.name
+      temp.label = res.label.title
+      temp.date = res.date
+      temp.author = res.author.first_name
+      temp
+    end
+    Display_Table.call(table, title, labels)
+  end
   Clear_Display = -> { system('clear') || system('cls') }
 end
