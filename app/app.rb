@@ -16,6 +16,7 @@ class App
   end
 
   def init
+    @state = @state_manager.fetch(@state) if @state_manager
     puts '----- Welcome to the ---->'
     puts '----- Catalog of Things -----'
     stay_idle
