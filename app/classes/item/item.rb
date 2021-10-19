@@ -1,9 +1,10 @@
 class Item
   attr_reader :id, :archived, :genre, :source, :label, :author
-  attr_accessor :date
+  attr_accessor :date, :name
 
-  def initialize(date:, archived: false, id: Random.rand(1..100_000))
+  def initialize(name:, date:, archived: false, id: Random.rand(1..100_000))
     @id = id
+    @name = name
     @date = date
     @archived = archived
   end
