@@ -1,5 +1,5 @@
 class App
-  def initialize(actions: [])
+  def initialize(actions: [], state_manager: nil)
     @actions = actions
     @state = {
       books: [],
@@ -12,6 +12,7 @@ class App
       labels: [],
       exit: false
     }
+    @state_manager = state_manager
   end
 
   def init
@@ -33,6 +34,12 @@ class App
     @actions[number_choose - 1].do_action(@state)
     puts '-----'
 
-    stay_idle unless @state[:exit]
+    return exit if @state[:exit]
+
+    stay_idle
+  end
+
+  def exit
+    @state_manager.save(@state)
   end
 end

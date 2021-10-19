@@ -13,4 +13,8 @@ class Author
     @items.push(item)
     item.author = self
   end
+
+  def to_json
+    
+  end
 end
