@@ -6,6 +6,10 @@ class App
       albums: [],
       movies: [],
       games: [],
+      genres: [],
+      sources: [],
+      authors: [],
+      labels: [],
       exit: false
     }
   end
