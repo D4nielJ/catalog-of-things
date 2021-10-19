@@ -12,7 +12,10 @@ class Source
     item.source = self
   end
 
-  def to_savable
-    JSON.pretty_generate({ id: @id })
+  def to_hash
+    {
+      id: @id,
+      name: @name
+    }
   end
 end

@@ -7,6 +7,14 @@ class Game < Item
     @last_played_at = last_played_at
   end
 
+  def to_hash
+    {
+      **super,
+      last_played_at: @last_played_at,
+      multiplayer: @multiplayer
+    }
+  end
+
   private
 
   def can_be_archived?

@@ -14,7 +14,11 @@ class Label
     item.label = self
   end
 
-  def to_savable
-    JSON.pretty_generate({ id: @id })
+  def to_hash
+    {
+      id: @id,
+      title: @title,
+      color: @color
+    }
   end
 end

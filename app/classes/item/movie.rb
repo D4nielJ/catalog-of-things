@@ -6,6 +6,13 @@ class Movie < Item
     @silent = silent
   end
 
+  def to_hash
+    {
+      **super,
+      silent: @silent
+    }
+  end
+
   private
 
   def can_be_archived?

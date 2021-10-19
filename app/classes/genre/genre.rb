@@ -16,6 +16,9 @@ class Genre
   end
 
   def to_hash
-    { id: @id }
+    {
+      id: @id,
+      name: @name
+    }
   end
 end

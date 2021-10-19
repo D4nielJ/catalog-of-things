@@ -14,7 +14,11 @@ class Author
     item.author = self
   end
 
-  def to_savable
-    JSON.pretty_generate({ id: @id })
+  def to_hash
+    {
+      id: @id,
+      first_name: @first_name,
+      last_name: @last_name
+    }
   end
 end

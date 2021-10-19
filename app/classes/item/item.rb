@@ -33,8 +33,13 @@ class Item
     @archived = can_be_archived?
   end
 
-  def to_savable
-    JSON.pretty_generate({ id: @id })
+  def to_hash
+    {
+      id: @id,
+      name: @name,
+      date: @date,
+      archived: @archived
+    }
   end
 
   private
