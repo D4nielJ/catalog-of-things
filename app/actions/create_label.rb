@@ -1,16 +1,16 @@
 require_relative '../modules/input_module'
 
-class CreateGenre
+class CreateLabel
   include InputModule
   attr_reader :name
 
   def initialize
-    @name = 'Create genre'
+    @name = 'Create label'
   end
 
   def do_action(state)
-    new_item = Genre.new(**Show_Prompt.call(%i[name]))
-    state[:genres].concat([new_item])
+    new_item = Label.new(**Show_Prompt.call(%i[title color]))
+    state[:labels].concat([new_item])
     new_item
   end
 end

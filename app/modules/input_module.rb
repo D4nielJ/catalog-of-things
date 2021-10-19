@@ -16,7 +16,6 @@ module InputModule
       puts message
       op = Show_Prompt.call(required_params)
       result = callback.call(*args, op[:index].to_i)
-      p args
       break if result
     end
     # result.respond_to?(:do_action) && result.send(:do_action, args)

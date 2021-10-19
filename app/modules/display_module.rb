@@ -18,7 +18,7 @@ module DisplayModule
   end
 
   Display_Table = lambda do |collection, title, labels|
-    # Clear_Display.call
+    Clear_Display.call
     max = max_string_length.call(collection, labels)
     temp_string = '#..'
     labels.each { |label| temp_string += " #{label.to_s.capitalize.ljust(max + 2, '.')}" }
@@ -40,12 +40,13 @@ module DisplayModule
     table = collection.map do |res|
       temp = Object.new
       class << temp
-        attr_accessor :name, :author, :label, :date, :genre
+        attr_accessor :name, :author, :label, :date, :genre, :source
       end
       temp.genre = res.genre.name
       temp.label = res.label.title
       temp.date = res.date
-      temp.author = res.author.first_name
+      temp.author = "#{res.author.first_name} #{res.author.last_name}"
+      temp.source = res.source.name
       temp
     end
     Display_Table.call(table, title, labels)
