@@ -11,9 +11,10 @@ class CreateAlbum
   end
 
   def do_action(state)
-    gl = [Genre.new(name: 'Horror'), Genre.new(name: 'Romance'), CreateGenre.new]
+    gl = [*state[:genres], CreateGenre.new]
     List_Collection.call(gl, 'Genres', %i[name], Display_Table)
     s1 = Show_Prompt_With_Callback.call(%i[index], 'Select a genre from the list', gl, callback: Get_By_Index)
+    s1 = s1.respond_to?(:do_action) ? s1.send(:do_action, state) : s1
 
     al = [Author.new(first_name: 'daniel', last_name: '?'), Author.new(first_name: 'alons', last_name: '?')]
     List_Collection.call(al, 'Albums', %i[first_name last_name], Display_Table)

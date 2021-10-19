@@ -6,6 +6,7 @@ class App
       albums: [],
       movies: [],
       games: [],
+      genres: [],
       exit: false
     }
   end

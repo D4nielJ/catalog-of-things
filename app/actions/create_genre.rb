@@ -1,4 +1,7 @@
+require_relative '../modules/input_module'
+
 class CreateGenre
+  include InputModule
   attr_reader :name
 
   def initialize
@@ -6,6 +9,8 @@ class CreateGenre
   end
 
   def do_action(state)
-    p 'doin an action'
+    new_gen = Genre.new(**Show_Prompt.call(%i[name]))
+    state[:genres].concat([new_gen])
+    new_gen
   end
 end
