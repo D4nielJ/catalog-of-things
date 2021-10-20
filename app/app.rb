@@ -1,4 +1,8 @@
+require_relative 'modules/display_module'
+
 class App
+  include DisplayModule
+
   def initialize(actions: [], state_manager: nil)
     @actions = actions
     @state = {
@@ -16,6 +20,7 @@ class App
   end
 
   def init
+    Clear_Display.call
     @state_manager&.fetch(@state)
     puts '----- Welcome to the ---->'
     puts '----- Catalog of Things -----'
