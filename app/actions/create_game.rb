@@ -11,7 +11,8 @@ class CreateGame
   end
 
   def do_action(state)
-    game = Game.new(**Show_Prompt.call(%i[name date last_played_at], 'Games' ,%i[multiplayer], validator: Valid_Boolean))
+    game = Game.new(**Show_Prompt.call(%i[name date last_played_at], 'Games', %i[multiplayer],
+                                       validator: Valid_Boolean))
     genre = SelectFromList.new.do_helper_action(state, state[:genres], CreateGenre.new, 'Genre')
     author = SelectFromList.new.do_helper_action(state, state[:authors], CreateAuthor.new, 'Author')
     label = SelectFromList.new.do_helper_action(state, state[:labels], CreateLabel.new, 'Labels')
