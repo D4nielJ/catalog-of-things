@@ -8,6 +8,8 @@ Console App that will help you to keep a record of different types of things you
 
 - [Overview](#overview)
   - [Screenshot](#screenshot)
+  - [Installation](#installation)
+  - [Available Scripts](#available-scripts)
 - [My process](#my-process)
   - [Built with](#built-with)
 - [Authors](#authors)
@@ -26,27 +28,12 @@ $ git clone git@github.com:D4nielJ/catalog-of-things.git
 $ cd catalog-of-things/
 ```
 
-### Installation
+### Available Scripts
 
-1. Clone the repo
-
-   ```sh 
-   git@github.com:smunozmo/ruby-group-capstone.git
-   ```
-
-### Usage
-
-1. Execute program 
-
-   ```sh
-   ruby main.rb
-   ```
-
-## Acknowledgements
-
-- Run a program using the command line.
-- Use Ruby syntax for basic programming operations.
-- Use Ruby to solve basic coding challenges.
+- Run the program
+```bash
+$ ruby main.rb
+```
 
 ## My Process
 
