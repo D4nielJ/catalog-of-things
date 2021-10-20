@@ -1,5 +1,5 @@
 module InputModule
-  Show_Prompt = lambda do |required_params, message, *args, validator: nil|
+  Show_Prompt = lambda do |required_params, message = '', *args, validator: nil|
     puts message
     temp_args = {}
     required_params.each do |param|
@@ -7,13 +7,13 @@ module InputModule
       input = gets.strip.to_s
       temp_args.merge!(param => input)
     end
-
-    temp = !validator.nil? && validator.call(*args)
-    p 'helo'
-    temp_args.merge!(temp[0] => temp[1])
+    valid = !validator.nil? && validator.call(*args)
+    p temp_args
+    p valid
+    valid == false ? temp_args : temp_args.merge!(valid)
   end
 
-  Show_Prompt_With_Callback = lambda do |required_params, message, *args, callback:|
+  Show_Prompt_With_Callback = lambda do |required_params, message = '', *args, callback:|
     result = nil
     loop do
       puts message
@@ -34,8 +34,16 @@ module InputModule
   end
 
   Valid_Boolean = lambda do |args|
-    Show_Prompt.call(args, 'Enter [y/n]')
-    input = gets.strip.to_s
-    return [args, input]
+    temp_args = {}
+    args.each do |param|
+      input = ''
+      loop do
+        puts "Enter[y/n] #{param}"
+        input = gets.strip.to_s
+        break if %w[y n Y N].include?(input)
+      end
+      temp_args.merge!(param => input.capitalize == 'Y')
+    end
+    temp_args
   end
 end
