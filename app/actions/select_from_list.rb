@@ -11,7 +11,6 @@ class SelectFromList
   end
 
   def do_helper_action(state, collection, action, title)
-    p collection.first.instance_variables
     temp = [*collection, action]
     List_Collection.call(temp, title, %i[name], Display_Table)
     temp = Show_Prompt_With_Callback.call(%i[index], 'Select from the list', temp, callback: Get_By_Index)

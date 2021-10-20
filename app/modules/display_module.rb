@@ -18,7 +18,7 @@ module DisplayModule
   end
 
   Display_Table = lambda do |collection, title, labels|
-    # Clear_Display.call
+    Clear_Display.call
     max = max_string_length.call(collection, labels)
     temp_string = '#..'
     labels.each { |label| temp_string += " #{label.to_s.capitalize.ljust(max + 2, '.')}" }
