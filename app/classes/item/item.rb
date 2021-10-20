@@ -33,6 +33,19 @@ class Item
     @archived = can_be_archived?
   end
 
+  def to_hash
+    {
+      id: @id,
+      genre: @genre.id,
+      source: @source.id,
+      label: @label.id,
+      author: @author.id,
+      name: @name,
+      date: @date,
+      archived: @archived
+    }
+  end
+
   private
 
   def can_be_archived?

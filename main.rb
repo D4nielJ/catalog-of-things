@@ -1,9 +1,11 @@
+require 'json'
 require_relative 'app/app'
 require_relative 'app/classes/index'
 require_relative 'app/actions/index'
 
 def main
   app = App.new(
+    state_manager: FileManager.new,
     actions: [
       ListAllBooks.new, ListAllAlbums.new, ListAllGames.new, ListAllMovies.new,
       ListAllGenres.new, ListAllAuthors.new, ListAllSources.new, ListAllLabes.new,

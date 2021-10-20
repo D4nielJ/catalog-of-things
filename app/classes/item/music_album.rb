@@ -1,6 +1,3 @@
-require_relative 'item'
-require_relative '../../../app/modules/display_module'
-
 class MusicAlbum < Item
   attr_reader :on_spotify
 
@@ -8,6 +5,15 @@ class MusicAlbum < Item
     @on_spotify = on_spotify
     super(**options)
   end
+
+  def to_hash
+    {
+      **super,
+      on_spotify: @on_spotify
+    }
+  end
+
+  private
 
   def can_be_archived?
     on_spotify && super

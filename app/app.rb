@@ -1,5 +1,9 @@
+require_relative 'modules/display_module'
+
 class App
-  def initialize(actions: [])
+  include DisplayModule
+
+  def initialize(actions: [], state_manager: nil)
     @actions = actions
     @state = {
       books: [],
@@ -12,9 +16,12 @@ class App
       labels: [],
       exit: false
     }
+    @state_manager = state_manager
   end
 
   def init
+    Clear_Display.call
+    @state_manager&.fetch(@state)
     puts '----- Welcome to the ---->'
     puts '----- Catalog of Things -----'
     stay_idle
@@ -33,6 +40,12 @@ class App
     @actions[number_choose - 1].do_action(@state)
     puts '-----'
 
-    stay_idle unless @state[:exit]
+    return exit if @state[:exit]
+
+    stay_idle
+  end
+
+  def exit
+    @state_manager.save(@state)
   end
 end
