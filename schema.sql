@@ -33,3 +33,14 @@ CREATE TABLE books (
   publisher VARCHAR(100),
   cover_state VARCHAR(100)
 );
+
+CREATE TABLE music_albums (
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  genre_id INT REFERENCES genre(id),
+  source_id INT REFERENCES source(id),
+  author_id INT REFERENCES author(id),
+  label_id INT REFERENCES label(id),
+  publish_date DATE,
+  archived BOOLEAN,
+  on_spotify BOOLEAN
+);
