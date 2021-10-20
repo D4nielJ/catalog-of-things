@@ -60,7 +60,7 @@ class InputJson
   def fetch_file(file, state)
     json = File.read("#{@adress}/#{file}.json")
     hashes = JSON.parse(json)
-    arr = hashes.map { |hash| p @map_hash[file.to_sym].call(hash, state) }
+    arr = hashes.map { |hash| @map_hash[file.to_sym].call(hash, state) }
     state[file.to_sym].concat(arr)
   end
 end
