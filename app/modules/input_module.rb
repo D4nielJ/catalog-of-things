@@ -8,8 +8,6 @@ module InputModule
       temp_args.merge!(param => input)
     end
     valid = !validator.nil? && validator.call(*args)
-    p temp_args
-    p valid
     valid == false ? temp_args : temp_args.merge!(valid)
   end
 
