@@ -20,6 +20,12 @@ Console App that will help you to keep a record of different types of things you
 
 ![Screenshot](./screenshot.png)
 
+### Documentation
+
+Watch a video of us explaining how the app works and the main features.
+
+[Video on loom](https://www.loom.com/share/aa97dca8a21241368852b4564dfe431e)
+
 ### Installation
 
 - Clone this repository
